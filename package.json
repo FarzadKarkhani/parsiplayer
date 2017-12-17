@@ -4,7 +4,7 @@
   "description": "Parsiplayer is a light HTML5 player based on VideoJS and powered by Hls.js engin",
   "main": "lib/parsiplayer.js",
   "scripts": {
-    "build": "webpack --env dev && webpack --env build && npm run test",
+    "build": "webpack --env dev && webpack --env build",
     "dev": "webpack --progress --colors --watch --env dev",
     "test": "mocha --require babel-core/register --colors ./test/*.spec.js",
     "test:watch": "mocha --require babel-core/register --colors -w ./test/*.spec.js"

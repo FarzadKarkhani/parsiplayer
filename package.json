@@ -1,0 +1,40 @@
+{
+  "name": "parsiplayer",
+  "version": "0.0.0",
+  "description": "Parsiplayer is a light HTML5 player based on VideoJS and powered by Hls.js engin",
+  "main": "lib/parsiplayer.js",
+  "scripts": {
+    "build": "webpack --env dev && webpack --env build && npm run test",
+    "dev": "webpack --progress --colors --watch --env dev",
+    "test": "mocha --require babel-core/register --colors ./test/*.spec.js",
+    "test:watch": "mocha --require babel-core/register --colors -w ./test/*.spec.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/FarzadKarkhani/parsiplayer.git"
+  },
+  "keywords": [
+    "es6",
+    "player",
+    "videojs",
+    "hlsjs",
+    "lahzenegar"
+  ],
+  "author": "Farzad Karkhani",
+  "license": "MIT",
+  "homepage": "https://github.com/FarzadKarkhani/parsiplayer",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.0.2",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-preset-es2015": "^6.24.1",
+    "chai": "^4.1.2",
+    "eslint": "^4.12.0",
+    "eslint-loader": "^1.9.0",
+    "mocha": "^4.0.1",
+    "webpack": "^3.8.1",
+    "yargs": "^10.0.3"
+  }
+}

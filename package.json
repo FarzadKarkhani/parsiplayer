@@ -36,5 +36,14 @@
     "mocha": "^4.0.1",
     "webpack": "^3.8.1",
     "yargs": "^10.0.3"
+  },
+  "dependencies": {
+    "hls.js": "^0.8.8",
+    "videojs": "^1.0.0",
+    "videojs-contrib-ads": "^5.1.5",
+    "videojs-ima": "^1.0.1",
+    "videojs-thumbnails": "^1.0.3",
+    "videojs-watermark": "^2.0.0",
+    "videojs5-hlsjs-source-handler": "^0.1.2"
   }
 }

@@ -1,14 +1,4 @@
-(function webpackUniversalModuleDefinition(root, factory) {
-	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory();
-	else if(typeof define === 'function' && define.amd)
-		define("parsiplayer", [], factory);
-	else if(typeof exports === 'object')
-		exports["parsiplayer"] = factory();
-	else
-		root["parsiplayer"] = factory();
-})(typeof self !== 'undefined' ? self : this, function() {
-return /******/ (function(modules) { // webpackBootstrap
+/******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
 /******/
@@ -170,5 +160,4 @@ module.exports = exports['default'];
 
 /***/ })
 /******/ ]);
-});
 //# sourceMappingURL=parsiplayer.js.map

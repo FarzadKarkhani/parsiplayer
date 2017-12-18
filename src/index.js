@@ -1,3 +1,2 @@
-import Cat from './cat.js';
-import Dog from './dog.js';
-export { Dog, Cat };
+'use strict';
+var videojs = window.videojs = require('video.js');

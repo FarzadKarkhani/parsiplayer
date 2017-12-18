@@ -1,47 +1,89 @@
-/* global __dirname, require, module*/
-
-const webpack = require('webpack');
-const UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
 const path = require('path');
-const env = require('yargs').argv.env; // use --env with webpack 2
+const webpack = require('webpack');
+const merge = require('webpack-merge');
+var ZipPlugin = require('zip-webpack-plugin');
+var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
-let packageName = 'parsiplayer';
-
-let plugins = [], outputFile;
-
-if (env === 'build') {
-  plugins.push(new UglifyJsPlugin({ minimize: true }));
-  outputFile = packageName + '.min.js';
-} else {
-  outputFile = packageName + '.js';
-}
-
-const config = {
-  entry: __dirname + '/src/index.js',
-  devtool: 'source-map',
-  output: {
-    path: __dirname + '/dist',
-    filename: outputFile
-  },
-  module: {
-    rules: [
-      {
-        test: /(\.jsx|\.js)$/,
-        loader: 'babel-loader',
-        exclude: /(node_modules|bower_components)/
-      },
-      {
-        test: /(\.jsx|\.js)$/,
-        loader: 'eslint-loader',
-        exclude: /node_modules/
-      }
-    ]
-  },
-  resolve: {
-    modules: [path.resolve('./node_modules'), path.resolve('./src')],
-    extensions: ['.json', '.js']
-  },
-  plugins: plugins
+const parts = require('./webpack.parts');
+const PATHS = {
+  index: path.join(__dirname, 'src'),
+  dist: path.join(__dirname, 'dist'),
 };
 
-module.exports = config;
+
+const commonConfig = merge([
+  {
+    output: {
+      path: PATHS.dist,
+      filename: '[name].js',
+      publicPath: '/'
+    },
+  },
+  parts.loadJavaScript({ include: PATHS.dist }),
+]);
+
+const productionConfig = merge([
+  {
+    plugins: [
+      new BundleAnalyzerPlugin({
+          analyzerMode: 'static'
+      }),
+      new ZipPlugin({
+        filename: 'parsiplayer-' + require('./package.json').version + '.zip',
+      }),
+    ],
+  },
+  parts.clean(PATHS.dist),
+  parts.minifyJavaScript(),
+  parts.minifyCSS({
+    options: {
+      discardComments: {
+        removeAll: true,
+      },
+      safe: true,
+    },
+  }),
+  parts.generateSourceMaps({ type: 'source-map' }),
+  parts.extractCSS({
+    use: ['css-loader', parts.autoprefix()],
+  }),
+  parts.attachCopyrightBanner(),
+  parts.setFreeVariable(
+    'process.env.NODE_ENV',
+    'production'
+  ),
+]);
+
+const developmentConfig = merge([
+  {
+    output: {
+      devtoolModuleFilenameTemplate: 'webpack:///[absolute-resource-path]',
+    },
+  },
+  parts.generateSourceMaps({ type: 'cheap-module-eval-source-map' }),
+  parts.loadCSS(),
+  parts.devServer({
+    host: 'localhost',
+    port: 3333,
+  }),
+  parts.setFreeVariable(
+    'process.env.NODE_ENV',
+    'development'
+  ),
+]);
+
+module.exports = (env) => {
+  const pages = [
+    parts.page({
+      title: 'Parsiplayer Hls Test',
+      entry: {
+        parsiplayer: PATHS.index,
+      },
+    }),
+  ];
+  const config = env === 'production' ?
+    productionConfig :
+    developmentConfig;
+
+  return merge([commonConfig, config].concat(pages));
+};

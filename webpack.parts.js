@@ -48,7 +48,7 @@ exports.lintJavaScript = ({ include, options } = {}) => ({
 exports.extractCSS = ({ include, exclude, use }) => {
   // Output extracted CSS to a file
   const plugin = new ExtractTextPlugin({
-    filename: '[name].[contenthash:8].css',
+    filename: '[name].css',
   });
 
   return {
@@ -162,6 +162,23 @@ exports.purifyCSS = ({ paths }) => ({
   ],
 });
 
+exports.loadFonts = ({ include, exclude, options } = {}) => ({
+  module: {
+    rules: [
+      {
+        // Capture eot, ttf, woff, and woff2
+        test: /\.(eot|ttf|woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
+        include,
+        exclude,
+        use: {
+          loader: "file-loader",
+          options,
+        },
+      },
+    ],
+  },
+});
+
 exports.page = ({
   path = '',
   title,
@@ -175,6 +192,7 @@ exports.page = ({
       filename: `${path && path + '/'}index.html`,
       template: 'template.ejs',
       title,
+      inject: 'head',
     }),
   ],
 });

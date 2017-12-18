@@ -1,6 +1,6 @@
 {
   "name": "parsiplayer",
-  "version": "0.0.0",
+  "version": "0.0.3",
   "description": "Parsiplayer is a light HTML5 player based on VideoJS and powered by Hls.js engin",
   "main": "lib/parsiplayer.js",
   "scripts": {
@@ -40,19 +40,17 @@
     "clean-webpack-plugin": "^0.1.16",
     "webpack-bundle-analyzer": "^2.9.0",
     "optimize-css-assets-webpack-plugin": "^3.0.0",
-    "webpack-bundle-analyzer": "^2.9.0",
     "webpack-dev-server": "^2.6.1",
     "webpack-merge": "^4.1.0",
     "webpack-zip-plugin": "^0.1.2",
     "zip-webpack-plugin": "^2.0.0"
   },
   "dependencies": {
-    "hls.js": "^0.8.8",
+    "lahzenegar-videojs5-hlsjs-source-handler": "^0.1.3",
     "videojs": "^1.0.0",
     "videojs-contrib-ads": "^5.1.5",
     "videojs-ima": "^1.0.1",
     "videojs-thumbnails": "^1.0.3",
-    "videojs-watermark": "^2.0.0",
-    "videojs5-hlsjs-source-handler": "^0.1.2"
+    "videojs-watermark": "^2.0.0"
   }
 }

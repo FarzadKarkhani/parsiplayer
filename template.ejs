@@ -8,10 +8,15 @@
 	<meta name="apple-mobile-web-app-capable" content="yes"/>
   </head>
   <body>
-  	<video preload="none" class="video-js vjs-default-skin" width="640" height="360" controls>
+  	<video id="exampleVideo" preload="none" class="video-js vjs-default-skin" controls>
       <source
         src="http://wowza.streamroot.io/liveorigin/stream1/playlist.m3u8"
         type="application/x-mpegurl">
     </video>
+    <script type="text/javascript">
+      (function(){
+        videojs('exampleVideo');
+      })();
+    </script>
   </body>
 </html>

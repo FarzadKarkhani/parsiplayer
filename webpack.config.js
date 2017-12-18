@@ -19,6 +19,11 @@ const commonConfig = merge([
       publicPath: '/'
     },
   },
+  parts.loadFonts({
+    options: {
+      name: "[name].[ext]",
+    },
+  }),
   parts.loadJavaScript({ include: PATHS.dist }),
 ]);
 

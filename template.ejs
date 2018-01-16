@@ -8,15 +8,30 @@
 	<meta name="apple-mobile-web-app-capable" content="yes"/>
   </head>
   <body>
-  	<video id="exampleVideo" preload="none" class="video-js vjs-default-skin" controls>
+  	<video width="640" height="360" preload="none" class="video-js vjs-default-skin" controls>
       <source
-        src="http://wowza.streamroot.io/liveorigin/stream1/playlist.m3u8"
-        type="application/x-mpegurl">
+        src="http://player.h-cdn.org/static/mp4/tears_of_steel_360p_MP4.mp4"
+        type="video/mp4">
     </video>
     <script type="text/javascript">
-      (function(){
-        videojs('exampleVideo');
-      })();
+        parsiplayer({
+          autoplay: false,
+          poster: 'http://player.h-cdn.org/static/mp4/tears_of_steel_1080p_MP4.jpg',
+          thumbnails: {
+              spriteUrl: 'http://player.h-cdn.org/static/mp4/tears_of_steel_thumbnails_0_7.jpg',
+              stepTime: 100,
+              width: 120,
+              height: 80
+          },
+          ads: {
+            adTagUrl: 'http://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=/124319096/external/ad_rule_samples&ciu_szs=300x250&ad_rule=1&impl=s&gdfp_req=1&env=vp&output=xml_vmap1&unviewed_position_start=1&cust_params=sample_ar%3Dpremidpostpod%26deployment%3Dgmf-js&cmsid=496&vid=short_onecue&correlator=',
+          },
+          brand: {
+            image: 'logo.svg',
+            tooltip: 'Lahzenegar',
+            url: 'https://lahzenegar.com',
+          },
+        });
     </script>
   </body>
 </html>

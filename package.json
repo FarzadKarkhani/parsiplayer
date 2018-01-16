@@ -51,6 +51,7 @@
     "videojs-contrib-ads": "^5.1.5",
     "videojs-ima": "^1.0.1",
     "videojs-thumbnails": "^1.0.3",
+    "videojs-vast-vpaid": "^3.0.0-beta.8",
     "videojs-watermark": "^2.0.0"
   }
 }

@@ -68,7 +68,7 @@ const developmentConfig = merge([
   parts.generateSourceMaps({ type: 'cheap-module-eval-source-map' }),
   parts.loadCSS(),
   parts.devServer({
-    host: 'localhost',
+    host: 'farzad.local',
     port: 3333,
   }),
   parts.setFreeVariable(
